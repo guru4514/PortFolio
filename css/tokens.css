@@ -1,0 +1,176 @@
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN TOKENS — Single source of truth for the design system
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Color: Dark Mode (Default) ────────────────────────────── */
+
+  /* Surfaces — layered from deepest to elevated */
+  --bg-base:        #09090b;
+  --bg-raised:      #18181b;
+  --bg-elevated:    #27272a;
+
+  /* Borders — hairline, purposeful */
+  --border:         rgba(255, 255, 255, 0.08);
+  --border-hover:   rgba(255, 255, 255, 0.16);
+  --border-accent:  rgba(99, 102, 241, 0.3);
+
+  /* Text hierarchy */
+  --text-primary:   #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-muted:     #71717a;
+
+  /* Accent — electric indigo */
+  --accent:         #6366f1;
+  --accent-hover:   #818cf8;
+  --accent-subtle:  rgba(99, 102, 241, 0.12);
+  --accent-glow:    rgba(99, 102, 241, 0.25);
+
+  /* CTA — amber for calls-to-action */
+  --cta:            #f59e0b;
+  --cta-hover:      #fbbf24;
+  --cta-subtle:     rgba(245, 158, 11, 0.12);
+
+  /* Semantic */
+  --success:        #22c55e;
+  --error:          #ef4444;
+
+  /* Category accents (skills, tags) */
+  --cat-lang:       #f59e0b;
+  --cat-ml:         #6366f1;
+  --cat-db:         #10b981;
+  --cat-dev:        #ef4444;
+  --cat-data:       #8b5cf6;
+  --cat-infra:      #06b6d4;
+
+  /* ── Typography ────────────────────────────────────────────── */
+
+  --font-sans:      'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:      'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --font-serif:     'DM Serif Display', Georgia, 'Times New Roman', serif;
+
+  /* Modular scale (1.25 ratio) — minimum 14px for readability */
+  --text-xs:        0.75rem;    /* 12px — metadata labels only */
+  --text-sm:        0.875rem;   /* 14px — minimum readable */
+  --text-base:      1rem;       /* 16px — body */
+  --text-lg:        1.125rem;   /* 18px — emphasized body */
+  --text-xl:        1.25rem;    /* 20px — card titles */
+  --text-2xl:       1.5rem;     /* 24px — section subtitles */
+  --text-3xl:       2rem;       /* 32px — section headings */
+  --text-4xl:       2.5rem;     /* 40px — hero subtitle */
+  --text-hero:      clamp(2.5rem, 5vw, 4.5rem); /* Fluid hero headline */
+
+  /* Font weights */
+  --weight-light:   300;
+  --weight-normal:  400;
+  --weight-medium:  500;
+  --weight-semi:    600;
+  --weight-bold:    700;
+
+  /* Line heights */
+  --leading-tight:  1.1;
+  --leading-snug:   1.3;
+  --leading-normal: 1.6;
+  --leading-relaxed:1.8;
+
+  /* Letter spacing */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:  0.05em;
+  --tracking-wider: 0.1em;
+  --tracking-widest:0.2em;
+
+  /* ── Spacing ───────────────────────────────────────────────── */
+
+  --space-1:   0.25rem;   /* 4px */
+  --space-2:   0.5rem;    /* 8px */
+  --space-3:   0.75rem;   /* 12px */
+  --space-4:   1rem;      /* 16px */
+  --space-5:   1.25rem;   /* 20px */
+  --space-6:   1.5rem;    /* 24px */
+  --space-8:   2rem;      /* 32px */
+  --space-10:  2.5rem;    /* 40px */
+  --space-12:  3rem;      /* 48px */
+  --space-16:  4rem;      /* 64px */
+  --space-20:  5rem;      /* 80px */
+  --space-24:  6rem;      /* 96px */
+
+  /* ── Layout ────────────────────────────────────────────────── */
+
+  --max-width:      1200px;
+  --nav-height:     60px;
+  --sidebar-width:  56px;
+  --content-pad:    clamp(1.5rem, 4vw, 5rem);
+
+  /* ── Borders & Radii ───────────────────────────────────────── */
+
+  --radius-sm:      6px;
+  --radius-md:      10px;
+  --radius-lg:      14px;
+  --radius-xl:      20px;
+  --radius-full:    9999px;
+
+  /* ── Shadows ───────────────────────────────────────────────── */
+
+  --shadow-sm:      0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md:      0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-lg:      0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-glow:    0 0 24px rgba(99, 102, 241, 0.15);
+
+  /* ── Transitions ───────────────────────────────────────────── */
+
+  --ease-out:       cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast:  150ms;
+  --duration-base:  250ms;
+  --duration-slow:  400ms;
+  --duration-theme: 350ms;
+
+  /* ── Background Pattern ────────────────────────────────────── */
+
+  --dot-color:      rgba(99, 102, 241, 0.12);
+  --dot-size:       1px;
+  --dot-spacing:    32px;
+  --grid-color:     rgba(99, 102, 241, 0.05);
+}
+
+
+/* ── Color: Light Mode ─────────────────────────────────────── */
+
+[data-theme="light"] {
+  --bg-base:        #fafaf9;
+  --bg-raised:      #ffffff;
+  --bg-elevated:    #f5f5f4;
+
+  --border:         rgba(0, 0, 0, 0.08);
+  --border-hover:   rgba(0, 0, 0, 0.16);
+  --border-accent:  rgba(99, 102, 241, 0.25);
+
+  --text-primary:   #09090b;
+  --text-secondary: #52525b;
+  --text-muted:     #a1a1aa;
+
+  --accent-subtle:  rgba(99, 102, 241, 0.08);
+  --accent-glow:    rgba(99, 102, 241, 0.12);
+  --cta-subtle:     rgba(245, 158, 11, 0.08);
+
+  --shadow-sm:      0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md:      0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg:      0 8px 32px rgba(0, 0, 0, 0.1);
+  --shadow-glow:    0 0 24px rgba(99, 102, 241, 0.08);
+
+  --dot-color:      rgba(99, 102, 241, 0.08);
+  --grid-color:     rgba(99, 102, 241, 0.04);
+}
+
+
+/* ── Reduced Motion ──────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast:  0ms;
+    --duration-base:  0ms;
+    --duration-slow:  0ms;
+    --duration-theme: 0ms;
+  }
+}

@@ -1,0 +1,148 @@
+/* ═══════════════════════════════════════════════════════════════
+   TERMINAL — Easter egg terminal overlay
+   ═══════════════════════════════════════════════════════════════ */
+
+#terminal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 10, 0.92);
+  z-index: 9998;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+#terminal-overlay.open {
+  display: flex;
+}
+
+.terminal-window {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-lg);
+  width: min(660px, 90vw);
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 0 80px rgba(99, 102, 241, 0.2),
+              var(--shadow-lg);
+}
+
+
+/* ── Title Bar ────────────────────────────────────────────────── */
+
+.terminal-bar {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.tb-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.tb-close {
+  background: #FF5F56;
+  transition: opacity var(--duration-fast) ease;
+}
+
+.tb-close:hover {
+  opacity: 0.7;
+}
+
+.tb-min {
+  background: #FFBD2E;
+}
+
+.tb-max {
+  background: #27C93F;
+}
+
+.tb-title {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin: 0 auto;
+  letter-spacing: var(--tracking-wide);
+}
+
+
+/* ── Terminal Body ────────────────────────────────────────────── */
+
+.terminal-body {
+  padding: var(--space-5) var(--space-6);
+  flex: 1;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: #a3e635;
+}
+
+/* Scrollbar inside terminal */
+.terminal-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+}
+
+.t-out {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.t-prompt-c {
+  color: var(--accent-hover);
+}
+
+.t-ascii {
+  color: var(--accent);
+  line-height: 1.15;
+  font-size: 0.65rem;
+}
+
+
+/* ── Input Row ────────────────────────────────────────────────── */
+
+.terminal-input-row {
+  padding: var(--space-2) var(--space-6) var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  border-top: 1px solid var(--border);
+}
+
+.t-prompt-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--accent-hover);
+  flex-shrink: 0;
+}
+
+#term-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #a3e635;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  caret-color: #a3e635;
+}
+
+@media (pointer: fine) {
+  #term-input { cursor: none; }
+}

@@ -1,0 +1,232 @@
+/* ═══════════════════════════════════════════════════════════════
+   BASE — Reset, global styles, typography defaults
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Reset ────────────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  background-color: var(--bg-base);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--duration-theme) ease,
+              color var(--duration-theme) ease;
+}
+
+
+/* ── Background Pattern — Subtle Dot Grid ────────────────────── */
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(var(--dot-color) var(--dot-size), transparent var(--dot-size));
+  background-size: var(--dot-spacing) var(--dot-spacing);
+  background-attachment: fixed;
+  transition: opacity var(--duration-theme) ease;
+}
+
+
+/* ── Typography Defaults ──────────────────────────────────────── */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--weight-normal);
+  line-height: var(--leading-tight);
+  color: var(--text-primary);
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+strong, b {
+  font-weight: var(--weight-semi);
+}
+
+code, kbd, pre {
+  font-family: var(--font-mono);
+}
+
+
+/* ── Selection ────────────────────────────────────────────────── */
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+::-moz-selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-hover);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-hover) transparent;
+}
+
+
+/* ── Focus Styles — Accessibility ─────────────────────────────── */
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+
+/* ── Skip to Content — Accessibility ──────────────────────────── */
+
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: var(--space-4);
+  z-index: 9999;
+  padding: var(--space-3) var(--space-6);
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  transition: top var(--duration-base) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+
+/* ── Custom Cursor — Desktop Only ─────────────────────────────── */
+
+#cursor {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width var(--duration-fast) var(--ease-out),
+              height var(--duration-fast) var(--ease-out),
+              background var(--duration-fast) var(--ease-out),
+              border-radius var(--duration-fast) var(--ease-out);
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+#cursor.hover {
+  width: 36px;
+  height: 36px;
+  background: var(--cta);
+  border-radius: var(--radius-sm);
+}
+
+/* Hide custom cursor on touch devices */
+@media (pointer: coarse) {
+  #cursor { display: none; }
+  body { cursor: auto; }
+}
+
+@media (pointer: fine) {
+  body { cursor: none; }
+}
+
+
+/* ── Utility: Screen Reader Only ──────────────────────────────── */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* ── Image defaults ───────────────────────────────────────────── */
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── List defaults ────────────────────────────────────────────── */
+
+ul, ol {
+  list-style: none;
+}
+
+/* ── Button defaults ──────────────────────────────────────────── */
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media (pointer: fine) {
+  button { cursor: none; }
+  a { cursor: none; }
+}

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Gururaj B Kandagal — Software Engineer & AI/ML Enthusiast</title>
+  <meta name="description" content="Gururaj B Kandagal — Software Engineer & AI/ML Enthusiast. CSE undergraduate at Cambridge IT, Bengaluru. Building production-grade AI systems — drowsiness detection, NLP pipelines, and full-stack applications.">
+  <meta name="keywords" content="Gururaj B Kandagal, Software Engineer, AI, ML, Machine Learning, Portfolio, CSE, Bengaluru, TensorFlow, Python, Full Stack">
+  <meta name="author" content="Gururaj B Kandagal">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://gururajkandagal.dev">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Gururaj B Kandagal — Software Engineer & AI/ML Enthusiast">
+  <meta property="og:description" content="I build AI systems that ship to production. Not demos. Systems that detect, predict, and deliver.">
+  <meta property="og:url" content="https://gururajkandagal.dev">
+  <meta property="og:site_name" content="Gururaj B Kandagal">
+  <meta property="og:locale" content="en_IN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gururaj B Kandagal — Software Engineer & AI/ML Enthusiast">
+  <meta name="twitter:description" content="I build AI systems that ship to production. Not demos. Systems that detect, predict, and deliver.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/contact.css">
+  <link rel="stylesheet" href="css/terminal.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Gururaj B Kandagal",
+    "url": "https://gururajkandagal.dev",
+    "email": "gurubk321@gmail.com",
+    "jobTitle": "Software Engineer & AI/ML Enthusiast",
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "Cambridge Institute of Technology, Bengaluru"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bangalore",
+      "addressRegion": "Karnataka",
+      "addressCountry": "India"
+    },
+    "sameAs": [
+      "https://github.com/guru4514",
+      "https://www.linkedin.com/in/gururaj-b-kandagal"
+    ]
+  }
+  </script>
+
+  <noscript>
+    <style>
+      .reveal, .ticker-item, .t-entry { opacity: 1; transform: none; }
+      #cursor { display: none; }
+      body { cursor: auto; }
+    </style>
+  </noscript>
+</head>
+<body>
+
+  <!-- Skip to content — Accessibility -->
+  <a href="#hero" class="skip-link">Skip to content</a>
+
+  <!-- Custom cursor — desktop only -->
+  <div id="cursor" aria-hidden="true"></div>
+
+  <!-- ═══════ TOP NAV ═══════ -->
+  <header id="topnav" role="banner">
+    <a class="nav-logo" href="#hero" aria-label="Go to top">Gururaj<span class="nav-logo__dot">.</span></a>
+
+    <ul class="nav-links" role="navigation" aria-label="Main navigation">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <div class="status-badge" aria-label="Currently open to opportunities">
+        <span class="status-badge__dot" aria-hidden="true"></span>
+        Open to opportunities
+      </div>
+      <button id="dm-toggle" title="Toggle dark mode" aria-label="Toggle dark mode" aria-pressed="true" role="switch">
+        <span class="dm-icon dm-sun" aria-hidden="true">☀</span>
+        <span class="dm-icon dm-moon" aria-hidden="true">☽</span>
+      </button>
+      <button id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile drawer -->
+  <div id="mobile-drawer" role="navigation" aria-label="Mobile navigation">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#journey">Journey</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- Sidebar -->
+  <nav id="sidebar" aria-label="Section navigation">
+    <a class="nav-roman active" href="#hero"     data-section="hero"     aria-label="Section 1: Hero">I</a>
+    <a class="nav-roman"        href="#about"    data-section="about"    aria-label="Section 2: About">II</a>
+    <a class="nav-roman"        href="#skills"   data-section="skills"   aria-label="Section 3: Skills">III</a>
+    <a class="nav-roman"        href="#projects" data-section="projects" aria-label="Section 4: Projects">IV</a>
+    <a class="nav-roman"        href="#journey"  data-section="journey"  aria-label="Section 5: Journey">V</a>
+    <a class="nav-roman"        href="#contact"  data-section="contact"  aria-label="Section 6: Contact">VI</a>
+  </nav>
+
+  <!-- Command Palette -->
+  <div id="cmd-palette" role="dialog" aria-label="Command palette" aria-modal="true">
+    <div class="cmd-window">
+      <div class="cmd-search">
+        <span class="cmd-search__icon" aria-hidden="true">⌘</span>
+        <input id="cmd-search-input" class="cmd-search__input" type="text"
+               placeholder="Search commands..." aria-label="Search commands"
+               autocomplete="off" autocorrect="off" spellcheck="false">
+      </div>
+      <div class="cmd-list" id="cmd-list" role="listbox" aria-label="Available commands"></div>
+    </div>
+  </div>
+
+  <!-- Terminal Overlay -->
+  <div id="terminal-overlay" role="dialog" aria-label="Terminal" aria-modal="true">
+    <div class="terminal-window">
+      <div class="terminal-bar">
+        <div class="tb-dot tb-close" id="term-close" role="button" aria-label="Close terminal" tabindex="0"></div>
+        <div class="tb-dot tb-min" aria-hidden="true"></div>
+        <div class="tb-dot tb-max" aria-hidden="true"></div>
+        <span class="tb-title">guru@portfolio ~ zsh</span>
+      </div>
+      <div class="terminal-body" id="term-output" role="log" aria-live="polite"></div>
+      <div class="terminal-input-row">
+        <span class="t-prompt-label" aria-hidden="true">guru@portfolio:~$&nbsp;</span>
+        <input id="term-input" type="text" autocomplete="off" autocorrect="off"
+               spellcheck="false" aria-label="Terminal input">
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ═══════ HERO ═══════ -->
+    <section id="hero">
+      <div class="hero-left">
+
+        <div class="hero-status">
+          <div class="status-badge" aria-label="Currently open to opportunities">
+            <span class="status-badge__dot" aria-hidden="true"></span>
+            Open to opportunities
+          </div>
+        </div>
+
+        <div class="hero-name-block">
+          <div class="hero-name-label">Introducing</div>
+          <h1 class="hero-name">Gururaj B Kandagal</h1>
+          <div class="hero-role-tags">
+            <span class="hero-tag hero-tag--primary">Software Engineer</span>
+            <span class="hero-tag hero-tag--secondary">AI/ML Enthusiast</span>
+            <span class="hero-sep">·</span>
+            <span class="hero-tag hero-tag--info">CSE · Bengaluru</span>
+          </div>
+        </div>
+
+        <div class="hero-divider" aria-hidden="true"></div>
+
+        <h2 class="hero-headline">I build AI systems<br>that <em><span class="word-highlight">ship.</span></em></h2>
+
+        <p class="hero-sub">Not demos. Not experiments. Systems that detect, predict, and deliver — built by someone who reads papers on weekdays and pushes commits on weekends.</p>
+
+        <div class="hero-cta-row">
+          <a class="btn-primary" href="assets/resume.pdf" download="Gururaj_B_Kandagal_Resume.pdf"
+             aria-label="Download resume as PDF">
+            ↓ Download Resume
+          </a>
+          <a class="btn-primary btn-primary--outline" href="#projects">See the work</a>
+          <a class="hero-link" href="https://github.com/guru4514" target="_blank" rel="noopener"
+             aria-label="View GitHub profile">GitHub ↗</a>
+          <a class="hero-link" href="https://www.linkedin.com/in/gururaj-b-kandagal" target="_blank" rel="noopener"
+             aria-label="View LinkedIn profile">LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <!-- Avatar Placeholder -->
+        <div class="avatar-container" aria-label="Gururaj B Kandagal">
+          <img src="assets/profile.jpg" alt="Gururaj B Kandagal" class="avatar-photo">
+          <div class="avatar-ring" aria-hidden="true"></div>
+        </div>
+
+        <!-- Compact Stats -->
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat__num" data-target="4">0</div>
+            <div class="hero-stat__label">Projects</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat__num" data-target="6">0</div>
+            <div class="hero-stat__label">Certifications</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat__num">95.6%</div>
+            <div class="hero-stat__label">Best Accuracy</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat__num">2027</div>
+            <div class="hero-stat__label">Graduating</div>
+          </div>
+        </div>
+
+        <!-- Neural Canvas -->
+        <div class="neural-canvas-wrap">
+          <canvas id="neural-canvas" role="img" aria-label="Interactive neural network particle animation"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ ABOUT ═══════ -->
+    <section id="about" class="section">
+      <div class="section__label">II · Signal</div>
+
+      <div class="bento-grid reveal">
+        <!-- Bio tile (large) -->
+        <div class="bento-tile bento-tile--2x2">
+          <span class="bento-tile__label">About</span>
+          <h2 class="bento-tile__heading">Computer scientist.<br>Builder.<br>Problem-first.</h2>
+          <p class="bento-tile__body">CSE undergraduate at Cambridge Institute of Technology, Bengaluru — graduating 2027. I write code across the full stack, but AI/ML is where I operate best. From CNNs running real-time inference to ML pipelines pushing accuracy past 99%, I care about outcomes, not just outputs.</p>
+        </div>
+
+        <!-- CGPA stat -->
+        <div class="bento-tile">
+          <span class="bento-tile__label">CGPA</span>
+          <div class="stat-ring-block">
+            <div class="stat-ring" data-percent="70">
+              <svg viewBox="0 0 100 100">
+                <circle class="stat-ring__bg" cx="50" cy="50" r="45"/>
+                <circle class="stat-ring__fill" cx="50" cy="50" r="45"/>
+              </svg>
+              <span class="stat-ring__value">7.0</span>
+            </div>
+            <span class="stat-ring__label">5 Semesters</span>
+          </div>
+        </div>
+
+        <!-- Graduating -->
+        <div class="bento-tile">
+          <span class="bento-tile__label">Graduating</span>
+          <div class="stat-ring-block">
+            <div class="stat-number">2027</div>
+            <span class="stat-label">B.E. Computer Science</span>
+          </div>
+        </div>
+
+        <!-- Currently doing -->
+        <div class="bento-tile bento-tile--2x1">
+          <span class="bento-tile__label">Currently ·</span>
+          <div class="ticker-list">
+            <div class="ticker-item">
+              <div class="ticker-bullet"></div>
+              <div class="ticker-text">CSI Chapter — Event Operations Lead</div>
+              <div class="ticker-meta">2025</div>
+            </div>
+            <div class="ticker-item">
+              <div class="ticker-bullet"></div>
+              <div class="ticker-text">Cambridge Institute of Technology</div>
+              <div class="ticker-meta">2027</div>
+            </div>
+            <div class="ticker-item">
+              <div class="ticker-bullet"></div>
+              <div class="ticker-text">Oracle · Infosys Certified</div>
+              <div class="ticker-meta">6 Certs</div>
+            </div>
+            <div class="ticker-item">
+              <div class="ticker-bullet"></div>
+              <div class="ticker-text">Building in public</div>
+              <div class="ticker-meta">github.com/guru4514</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detection Accuracy Ring -->
+        <div class="bento-tile">
+          <span class="bento-tile__label">Detection</span>
+          <div class="stat-ring-block">
+            <div class="stat-ring" data-percent="95.6">
+              <svg viewBox="0 0 100 100">
+                <circle class="stat-ring__bg" cx="50" cy="50" r="45"/>
+                <circle class="stat-ring__fill" cx="50" cy="50" r="45"/>
+              </svg>
+              <span class="stat-ring__value" data-target="95.6">0</span>
+            </div>
+            <span class="stat-ring__label">% Accuracy</span>
+          </div>
+        </div>
+
+        <!-- Classification Accuracy Ring -->
+        <div class="bento-tile">
+          <span class="bento-tile__label">Classification</span>
+          <div class="stat-ring-block">
+            <div class="stat-ring" data-percent="99.12">
+              <svg viewBox="0 0 100 100">
+                <circle class="stat-ring__bg" cx="50" cy="50" r="45"/>
+                <circle class="stat-ring__fill" cx="50" cy="50" r="45"/>
+              </svg>
+              <span class="stat-ring__value" data-target="99.1">0</span>
+            </div>
+            <span class="stat-ring__label">% Accuracy</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ SKILLS ═══════ -->
+    <section id="skills" class="section">
+      <div class="section__label">III · Elements</div>
+      <h2 class="skills-intro reveal">Every tool chosen for a reason.<br>Every skill, earned through shipping.</h2>
+
+      <div class="skills-sub-label">Core Languages & AI / ML Stack</div>
+      <div class="periodic-grid" id="periodic-grid" role="list" aria-label="Core technical skills"></div>
+
+      <div class="skills-divider"></div>
+
+      <div class="skills-sub-label">Tools, Platforms & Dev Stack</div>
+      <div class="tools-grid" id="tools-grid" role="list" aria-label="Development tools and platforms"></div>
+    </section>
+
+    <!-- ═══════ PROJECTS ═══════ -->
+    <section id="projects" class="section">
+      <div class="section__label">IV · Systems</div>
+      <h2 class="projects-intro reveal">Not a demo.<br>A system.</h2>
+      <div id="project-list"></div>
+    </section>
+
+    <!-- ═══════ JOURNEY ═══════ -->
+    <section id="journey" class="section">
+      <div class="section__label">V · Log</div>
+      <h2 class="journey-intro reveal">The sequence<br>that got here.</h2>
+      <div class="timeline" id="timeline" role="list" aria-label="Education and career timeline"></div>
+    </section>
+
+    <!-- ═══════ CONTACT ═══════ -->
+    <section id="contact" class="section">
+      <div class="section__label">VI · Connect</div>
+      <h2 class="contact-headline reveal">Let's build<br>something <em>real.</em></h2>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <a class="c-card" href="mailto:gurubk321@gmail.com" aria-label="Email Gururaj">
+            <span class="c-icon" aria-hidden="true">✉</span>
+            <span class="c-text">
+              <span class="c-label">Email</span>
+              <span class="c-val">gurubk321@gmail.com</span>
+            </span>
+            <span class="c-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="c-card" href="tel:+918660763251" aria-label="Call Gururaj">
+            <span class="c-icon" aria-hidden="true">📞</span>
+            <span class="c-text">
+              <span class="c-label">Phone</span>
+              <span class="c-val">+91 86607 63251</span>
+            </span>
+            <span class="c-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="c-card" href="https://github.com/guru4514" target="_blank" rel="noopener" aria-label="GitHub profile">
+            <span class="c-icon" aria-hidden="true">⌥</span>
+            <span class="c-text">
+              <span class="c-label">GitHub</span>
+              <span class="c-val">github.com/guru4514</span>
+            </span>
+            <span class="c-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="c-card" href="https://www.linkedin.com/in/gururaj-b-kandagal" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+            <span class="c-icon" aria-hidden="true">in</span>
+            <span class="c-text">
+              <span class="c-label">LinkedIn</span>
+              <span class="c-val">Gururaj B Kandagal</span>
+            </span>
+            <span class="c-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="c-card" href="https://maps.google.com/?q=Bangalore,Karnataka,India" target="_blank" rel="noopener" aria-label="Location: Bangalore">
+            <span class="c-icon" aria-hidden="true">◎</span>
+            <span class="c-text">
+              <span class="c-label">Location</span>
+              <span class="c-val">Bangalore, Karnataka, India</span>
+            </span>
+            <span class="c-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <div class="contact-divider"></div>
+
+          <div class="contact-hints">
+            <p class="hint">Press <kbd>T</kbd> anywhere to open the terminal.</p>
+            <p class="hint">Press <kbd>Ctrl</kbd>+<kbd>K</kbd> for the command palette.</p>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <!-- Honeypot -->
+          <input type="text" name="botcheck" class="cf-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="cf-field">
+            <label class="cf-label" for="cf-name">Your name</label>
+            <input class="cf-input" id="cf-name" name="name" type="text"
+                   placeholder="Ada Lovelace" required autocomplete="name">
+          </div>
+
+          <div class="cf-field">
+            <label class="cf-label" for="cf-email">Your email</label>
+            <input class="cf-input" id="cf-email" name="email" type="email"
+                   placeholder="hello@example.com" required autocomplete="email">
+          </div>
+
+          <div class="cf-field">
+            <label class="cf-label" for="cf-message">Message</label>
+            <textarea class="cf-textarea" id="cf-message" name="message"
+                      placeholder="Tell me what you're building…" required></textarea>
+          </div>
+
+          <button class="cf-btn" type="submit">Send it →</button>
+          <div class="cf-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer role="contentinfo">
+    <span class="footer__copy">© 2026 Gururaj B Kandagal. Built with craft.</span>
+    <div class="footer__links">
+      <a href="https://github.com/guru4514" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/gururaj-b-kandagal" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:gurubk321@gmail.com">Email</a>
+    </div>
+  </footer>
+
+  <!-- JavaScript (ES Modules) -->
+  <script type="module" src="js/app.js"></script>
+
+</body>
+</html>
