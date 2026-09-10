@@ -243,9 +243,10 @@ function initLenis() {
   if (typeof Lenis === 'undefined') return;
 
   const lenis = new Lenis({
-    duration: 1.1,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    touchMultiplier: 2,
+    duration: 0.7,
+    easing: (t) => 1 - Math.pow(1 - t, 4),
+    touchMultiplier: 1.5,
+    wheelMultiplier: 1.2,
   });
 
   function raf(time) {
