@@ -140,6 +140,35 @@
 }
 
 
+/* ── Split-Text Reveal Animation ──────────────────────────────── */
+
+.split-line {
+  overflow: hidden;
+  display: block;
+}
+
+.split-word {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition: transform 0.7s var(--ease-out),
+              opacity 0.7s var(--ease-out);
+}
+
+.split-word.revealed {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .split-word {
+    transform: none;
+    opacity: 1;
+    transition: none;
+  }
+}
+
+
 /* ── Sub Text ─────────────────────────────────────────────────── */
 
 .hero-sub {

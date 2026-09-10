@@ -126,6 +126,20 @@ section + .section,
   transform: scaleX(1);
 }
 
+.nav-links a.scrambling {
+  font-family: var(--font-mono);
+  letter-spacing: var(--tracking-normal);
+}
+
+
+/* ── Magnetic Button Effect ───────────────────────────────────── */
+
+.magnetic {
+  transition: transform var(--duration-fast) var(--ease-out);
+  will-change: transform;
+}
+
+
 .nav-right {
   display: flex;
   align-items: center;

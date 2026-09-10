@@ -2,6 +2,40 @@
    COMPONENTS — Bento grid, Skills, Projects, Timeline, Badges
    ═══════════════════════════════════════════════════════════════ */
 
+/* ══════════ CURSOR SPOTLIGHT (shared by cards) ══════════ */
+
+.spotlight-card {
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    500px circle at var(--mouse-x) var(--mouse-y),
+    var(--accent-subtle),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity var(--duration-base) ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+@media (pointer: coarse) {
+  .spotlight-card::before { display: none; }
+}
+
+
 /* ══════════ BENTO GRID (About Section) ══════════ */
 
 .bento-grid {

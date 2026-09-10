@@ -48,6 +48,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 10. Command palette
   initCommandPalette();
+
+  // 11. Lenis smooth scroll
+  initLenis();
+
+  // 12. Split-text hero reveal
+  initSplitTextReveal();
+
+  // 13. Magnetic buttons
+  initMagneticButtons();
+
+  // 14. Character scramble on nav
+  initCharScramble();
+
+  // 15. Cursor spotlight on cards
+  initCursorSpotlight();
 });
 
 
@@ -218,4 +233,152 @@ function initCommandPalette() {
   function closePalette() {
     palette.classList.remove('open');
   }
+}
+
+
+/* ── Lenis Smooth Scroll ───────────────────────────────────────── */
+
+function initLenis() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (typeof Lenis === 'undefined') return;
+
+  const lenis = new Lenis({
+    duration: 1.1,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    touchMultiplier: 2,
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // Expose for use by other modules
+  window.__lenis = lenis;
+}
+
+
+/* ── Split-Text Hero Reveal ────────────────────────────────────── */
+
+function initSplitTextReveal() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const headline = document.querySelector('.hero-headline');
+  if (!headline) return;
+
+  // Get the raw HTML and split while preserving tags
+  const html = headline.innerHTML;
+
+  // Split into lines by <br> tags
+  const lines = html.split(/<br\s*\/?>/i);
+
+  headline.innerHTML = lines.map((line) => {
+    // Split line into words, preserving HTML tags
+    const words = line.trim().split(/(\s+)/).filter(Boolean);
+    const wrappedWords = words.map((word, i) => {
+      if (/^\s+$/.test(word)) return word; // preserve spaces
+      return `<span class="split-word" style="transition-delay: ${i * 0.06}s">${word}</span>`;
+    }).join('');
+    return `<span class="split-line">${wrappedWords}</span>`;
+  }).join('<br>');
+
+  // Trigger reveal after a short delay for paint
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      headline.querySelectorAll('.split-word').forEach((word) => {
+        word.classList.add('revealed');
+      });
+    }, 150);
+  });
+}
+
+
+/* ── Magnetic Buttons ──────────────────────────────────────────── */
+
+function initMagneticButtons() {
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  document.querySelectorAll('.magnetic').forEach((btn) => {
+    const strength = 0.3; // How much the button follows the cursor (0–1)
+
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const deltaX = (e.clientX - centerX) * strength;
+      const deltaY = (e.clientY - centerY) * strength;
+
+      btn.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = 'translate(0, 0)';
+    });
+  });
+}
+
+
+/* ── Character Scramble on Nav Links ───────────────────────────── */
+
+function initCharScramble() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  navLinks.forEach((link) => {
+    const original = link.textContent;
+    let interval = null;
+
+    link.addEventListener('mouseenter', () => {
+      let iteration = 0;
+      link.classList.add('scrambling');
+
+      clearInterval(interval);
+      interval = setInterval(() => {
+        link.textContent = original
+          .split('')
+          .map((char, i) => {
+            if (i < iteration) return original[i];
+            return chars[Math.floor(Math.random() * chars.length)];
+          })
+          .join('');
+
+        iteration += 1 / 2; // Speed: resolves 1 char every 2 frames
+
+        if (iteration >= original.length) {
+          clearInterval(interval);
+          link.textContent = original;
+          link.classList.remove('scrambling');
+        }
+      }, 30);
+    });
+
+    link.addEventListener('mouseleave', () => {
+      clearInterval(interval);
+      link.textContent = original;
+      link.classList.remove('scrambling');
+    });
+  });
+}
+
+
+/* ── Cursor Spotlight on Cards ─────────────────────────────────── */
+
+function initCursorSpotlight() {
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+
+  document.addEventListener('mousemove', (e) => {
+    const card = e.target.closest('.spotlight-card');
+    if (!card) return;
+
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    card.style.setProperty('--mouse-x', `${x}px`);
+    card.style.setProperty('--mouse-y', `${y}px`);
+  });
 }

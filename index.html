@@ -193,11 +193,11 @@
         <p class="hero-sub">Not demos. Not experiments. Systems that detect, predict, and deliver — built by someone who reads papers on weekdays and pushes commits on weekends.</p>
 
         <div class="hero-cta-row">
-          <a class="btn-primary" href="assets/resume.pdf" download="Gururaj_B_Kandagal_Resume.pdf"
+          <a class="btn-primary magnetic" href="assets/resume.pdf" download="Gururaj_B_Kandagal_Resume.pdf"
              aria-label="Download resume as PDF">
             ↓ Download Resume
           </a>
-          <a class="btn-primary btn-primary--outline" href="#projects">See the work</a>
+          <a class="btn-primary btn-primary--outline magnetic" href="#projects">See the work</a>
           <a class="hero-link" href="https://github.com/guru4514" target="_blank" rel="noopener"
              aria-label="View GitHub profile">GitHub ↗</a>
           <a class="hero-link" href="https://www.linkedin.com/in/gururaj-b-kandagal" target="_blank" rel="noopener"
@@ -245,14 +245,14 @@
 
       <div class="bento-grid reveal">
         <!-- Bio tile (large) -->
-        <div class="bento-tile bento-tile--2x2">
+        <div class="bento-tile spotlight-card bento-tile--2x2">
           <span class="bento-tile__label">About</span>
           <h2 class="bento-tile__heading">Computer scientist.<br>Builder.<br>Problem-first.</h2>
           <p class="bento-tile__body">CSE undergraduate at Cambridge Institute of Technology, Bengaluru — graduating 2027. I write code across the full stack, but AI/ML is where I operate best. From CNNs running real-time inference to ML pipelines pushing accuracy past 99%, I care about outcomes, not just outputs.</p>
         </div>
 
         <!-- CGPA stat -->
-        <div class="bento-tile">
+        <div class="bento-tile spotlight-card">
           <span class="bento-tile__label">CGPA</span>
           <div class="stat-ring-block">
             <div class="stat-ring" data-percent="70">
@@ -267,7 +267,7 @@
         </div>
 
         <!-- Graduating -->
-        <div class="bento-tile">
+        <div class="bento-tile spotlight-card">
           <span class="bento-tile__label">Graduating</span>
           <div class="stat-ring-block">
             <div class="stat-number">2027</div>
@@ -276,7 +276,7 @@
         </div>
 
         <!-- Currently doing -->
-        <div class="bento-tile bento-tile--2x1">
+        <div class="bento-tile spotlight-card bento-tile--2x1">
           <span class="bento-tile__label">Currently ·</span>
           <div class="ticker-list">
             <div class="ticker-item">
@@ -303,7 +303,7 @@
         </div>
 
         <!-- Detection Accuracy Ring -->
-        <div class="bento-tile">
+        <div class="bento-tile spotlight-card">
           <span class="bento-tile__label">Detection</span>
           <div class="stat-ring-block">
             <div class="stat-ring" data-percent="95.6">
@@ -318,7 +318,7 @@
         </div>
 
         <!-- Classification Accuracy Ring -->
-        <div class="bento-tile">
+        <div class="bento-tile spotlight-card">
           <span class="bento-tile__label">Classification</span>
           <div class="stat-ring-block">
             <div class="stat-ring" data-percent="99.12">
@@ -462,7 +462,8 @@
     </div>
   </footer>
 
-  <!-- JavaScript (ES Modules) -->
+  <!-- JavaScript -->
+  <script src="lib/lenis.min.js"></script>
   <script type="module" src="js/app.js"></script>
 
 </body>

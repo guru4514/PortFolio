@@ -61,7 +61,7 @@ export function renderProjects() {
 
   PROJECTS.forEach((p, i) => {
     const card = document.createElement('div');
-    card.className = `project-card${p.flagship ? ' project-card--flagship' : ''}`;
+    card.className = `project-card spotlight-card${p.flagship ? ' project-card--flagship' : ''}`;
     card.setAttribute('role', 'article');
     card.setAttribute('aria-label', p.title);
 
