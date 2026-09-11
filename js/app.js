@@ -3,15 +3,16 @@
    ═══════════════════════════════════════════════════════════════ */
 
 import { initTheme, toggleTheme } from './theme.js';
-import { initRevealAnimations, initCounters, initStatRings, initSidebarTracking } from './animations.js';
+import { initRevealAnimations, initCounters, initStatRings, initSidebarTracking, initStickyCards } from './animations.js';
 import { initNeuralCanvas } from './canvas.js';
 import { initTerminal, openTerminalFromExternal } from './terminal.js';
 import { initContactForm } from './form.js';
-import { renderSkills, renderTools, renderProjects, renderTimeline, renderCommandPalette } from './render.js';
+import { renderSkills, renderTools, renderProjects, renderTimeline, renderCommandPalette, renderMarquee, renderThoughts } from './render.js';
+import { initAudio, playClick, playPop, playBell } from './audio.js';
 
 /* ── Initialize Everything ─────────────────────────────────────── */
 
-document.addEventListener('DOMContentLoaded', () => {
+function boot() {
   // 1. Theme (must be first for correct canvas colors)
   initTheme();
 
@@ -21,12 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
   renderProjects();
   renderTimeline();
   renderCommandPalette();
+  renderMarquee();
+  renderThoughts();
 
   // 3. Animations & interactivity
   initRevealAnimations();
   initCounters();
   initStatRings();
   initSidebarTracking();
+  initStickyCards();
 
   // 4. Canvas
   initNeuralCanvas();
@@ -63,7 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 15. Cursor spotlight on cards
   initCursorSpotlight();
-});
+
+  // 16. Audio micro-sounds
+  initAudio();
+}
+
+document.addEventListener('DOMContentLoaded', boot);
 
 
 /* ── Custom Cursor ─────────────────────────────────────────────── */
@@ -136,6 +145,7 @@ function initDarkModeToggle() {
 
   toggle.addEventListener('click', () => {
     toggleTheme();
+    playClick();
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     toggle.setAttribute('aria-pressed', isDark);
   });
@@ -210,6 +220,7 @@ function initCommandPalette() {
 
       case 'theme':
         toggleTheme();
+        playClick();
         closePalette();
         break;
 
@@ -224,6 +235,7 @@ function initCommandPalette() {
     palette.classList.add('open');
     searchInput.value = '';
     searchInput.focus();
+    playPop();
     // Show all items
     list.querySelectorAll('.cmd-item').forEach((item) => {
       item.style.display = '';
@@ -237,16 +249,26 @@ function initCommandPalette() {
 
 
 /* ── Lenis Smooth Scroll ───────────────────────────────────────── */
+/* Disabled: native CSS scroll-behavior: smooth (in base.css) feels
+   more natural for a content-heavy portfolio. Lenis overrides
+   trackpad/mouse physics which can feel wrong on many devices.
+   The lib is still loaded — re-enable by uncommenting if desired. */
 
 function initLenis() {
+  // Intentionally disabled — using native smooth scroll instead.
+  // To re-enable: remove the early return below.
+  return;
+
+  /* eslint-disable no-unreachable */
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (typeof Lenis === 'undefined') return;
 
   const lenis = new Lenis({
-    duration: 0.7,
-    easing: (t) => 1 - Math.pow(1 - t, 4),
-    touchMultiplier: 1.5,
-    wheelMultiplier: 1.2,
+    duration: 1.0,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    touchMultiplier: 1.0,
+    wheelMultiplier: 1.0,
+    smoothWheel: true,
   });
 
   function raf(time) {
@@ -255,12 +277,13 @@ function initLenis() {
   }
   requestAnimationFrame(raf);
 
-  // Expose for use by other modules
   window.__lenis = lenis;
+  /* eslint-enable no-unreachable */
 }
 
 
 /* ── Split-Text Hero Reveal ────────────────────────────────────── */
+/* Refined: snappier 40ms stagger, subtle scale growth on reveal */
 
 function initSplitTextReveal() {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -274,12 +297,16 @@ function initSplitTextReveal() {
   // Split into lines by <br> tags
   const lines = html.split(/<br\s*\/?>/i);
 
+  let wordIndex = 0; // Global index for stagger timing across all lines
+
   headline.innerHTML = lines.map((line) => {
     // Split line into words, preserving HTML tags
     const words = line.trim().split(/(\s+)/).filter(Boolean);
-    const wrappedWords = words.map((word, i) => {
+    const wrappedWords = words.map((word) => {
       if (/^\s+$/.test(word)) return word; // preserve spaces
-      return `<span class="split-word" style="transition-delay: ${i * 0.06}s">${word}</span>`;
+      const delay = wordIndex * 0.04; // 40ms stagger — snappier than 60ms
+      wordIndex++;
+      return `<span class="split-word" style="transition-delay: ${delay}s">${word}</span>`;
     }).join('');
     return `<span class="split-line">${wrappedWords}</span>`;
   }).join('<br>');
@@ -296,26 +323,78 @@ function initSplitTextReveal() {
 
 
 /* ── Magnetic Buttons ──────────────────────────────────────────── */
+/* Refined spring physics: smooth lerp approach + animated spring-back */
 
 function initMagneticButtons() {
   if (!window.matchMedia('(pointer: fine)').matches) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   document.querySelectorAll('.magnetic').forEach((btn) => {
-    const strength = 0.3; // How much the button follows the cursor (0–1)
+    const strength = 0.3;       // How strongly the button follows cursor (0–1)
+    const lerpFactor = 0.15;    // Smoothing factor for approach (lower = smoother)
+    const returnSpeed = 0.12;   // Smoothing factor for spring-back
+    const activationPadding = 40; // Extra px around the button that activates the effect
+
+    let currentX = 0;
+    let currentY = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let isHovering = false;
+    let rafId = null;
+
+    function lerp(start, end, factor) {
+      return start + (end - start) * factor;
+    }
+
+    function animate() {
+      const factor = isHovering ? lerpFactor : returnSpeed;
+      currentX = lerp(currentX, targetX, factor);
+      currentY = lerp(currentY, targetY, factor);
+
+      // Stop animating when close enough to target (< 0.1px)
+      if (Math.abs(currentX - targetX) < 0.1 && Math.abs(currentY - targetY) < 0.1) {
+        currentX = targetX;
+        currentY = targetY;
+        btn.style.transform = currentX === 0 && currentY === 0
+          ? ''
+          : `translate(${currentX}px, ${currentY}px)`;
+        rafId = null;
+        return;
+      }
+
+      btn.style.transform = `translate(${currentX}px, ${currentY}px)`;
+      rafId = requestAnimationFrame(animate);
+    }
+
+    function startAnimation() {
+      if (!rafId) {
+        rafId = requestAnimationFrame(animate);
+      }
+    }
 
     btn.addEventListener('mousemove', (e) => {
       const rect = btn.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-      const deltaX = (e.clientX - centerX) * strength;
-      const deltaY = (e.clientY - centerY) * strength;
 
-      btn.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+      // Check if cursor is within activation zone
+      const distX = Math.abs(e.clientX - centerX) - rect.width / 2;
+      const distY = Math.abs(e.clientY - centerY) - rect.height / 2;
+      const isInRange = distX < activationPadding && distY < activationPadding;
+
+      if (isInRange) {
+        isHovering = true;
+        targetX = (e.clientX - centerX) * strength;
+        targetY = (e.clientY - centerY) * strength;
+        startAnimation();
+      }
     });
 
     btn.addEventListener('mouseleave', () => {
-      btn.style.transform = 'translate(0, 0)';
+      isHovering = false;
+      targetX = 0;
+      targetY = 0;
+      startAnimation(); // Animate back to origin
     });
   });
 }

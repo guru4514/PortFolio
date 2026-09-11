@@ -12,7 +12,7 @@
   overflow: hidden;
 }
 
-/* Subtle accent glow behind hero */
+/* Subtle accent glow behind hero — kept light to avoid blue wash */
 #hero::before {
   content: '';
   position: absolute;
@@ -28,12 +28,12 @@
   pointer-events: none;
   z-index: 0;
   filter: blur(60px);
-  opacity: 0.6;
+  opacity: 0.3;
   transition: opacity var(--duration-theme) ease;
 }
 
 [data-theme="light"] #hero::before {
-  opacity: 0.3;
+  opacity: 0.15;
 }
 
 .hero-left {
@@ -177,14 +177,14 @@
 
 .split-word {
   display: inline-block;
-  transform: translateY(110%);
+  transform: translateY(110%) scale(1.02);
   opacity: 0;
-  transition: transform 0.7s var(--ease-out),
-              opacity 0.7s var(--ease-out);
+  transition: transform 0.6s var(--ease-out),
+              opacity 0.6s var(--ease-out);
 }
 
 .split-word.revealed {
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
   opacity: 1;
 }
 

@@ -2,7 +2,7 @@
    RENDER — DOM rendering for dynamic content sections
    ═══════════════════════════════════════════════════════════════ */
 
-import { SKILLS, TOOLS, PROJECTS, TIMELINE, CMD_PALETTE_ITEMS } from './data.js';
+import { SKILLS, TOOLS, PROJECTS, TIMELINE, THOUGHTS, CMD_PALETTE_ITEMS } from './data.js';
 
 /**
  * Render the periodic table skills grid
@@ -65,19 +65,19 @@ export function renderProjects() {
     card.setAttribute('role', 'article');
     card.setAttribute('aria-label', p.title);
 
-    const flagshipBadge = p.flagship
-      ? '<div class="project-card__flagship-badge">★ Flagship Project</div>'
-      : '';
-
     const detailId = `detail-${i}`;
 
     card.innerHTML = `
-      ${flagshipBadge}
       <div class="project-card__header">
         <span class="project-card__num">${p.num} /</span>
         <h3 class="project-card__title">${p.title}</h3>
         <span class="project-card__arrow" id="arrow-${i}" aria-hidden="true">↗</span>
       </div>
+
+      ${p.images && p.images.length ? `
+        <div class="project-gallery">
+          ${p.images.map((src) => `<img class="project-gallery__img" src="${src}" alt="${p.title} screenshot" loading="lazy">`).join('')}
+        </div>` : ''}
 
       <div class="pti-grid">
         <div class="pti-item">
@@ -103,6 +103,11 @@ export function renderProjects() {
            aria-label="View ${p.title} on GitHub">
           ⌥ GitHub ↗
         </a>
+        ${p.demo ? `
+          <a href="${p.demo}" target="_blank" rel="noopener" class="project-link project-link--demo"
+             aria-label="View ${p.title} live demo">
+            ◉ Live Demo ↗
+          </a>` : ''}
         <button class="project-link" aria-expanded="false"
                 aria-controls="${detailId}" data-detail="${i}">
           ▸ Details
@@ -111,6 +116,11 @@ export function renderProjects() {
 
       <div class="project-detail" id="${detailId}" role="region"
            aria-label="${p.title} details">
+        ${p.architecture ? `
+          <div class="project-arch">
+            <div class="project-arch__label">Architecture</div>
+            <pre class="project-arch__diagram">${p.architecture}</pre>
+          </div>` : ''}
         <ul>
           ${p.details.map((d) => `<li>${d}</li>`).join('')}
         </ul>
@@ -184,5 +194,62 @@ export function renderCommandPalette() {
       <span class="cmd-item__label">${item.label}</span>`;
 
     list.appendChild(el);
+  });
+}
+
+
+/**
+ * Render infinite marquee tech strip
+ * Content is duplicated for seamless CSS loop
+ */
+export function renderMarquee() {
+  const track = document.getElementById('marquee-track');
+  if (!track) return;
+
+  // Combine all skill and tool names
+  const names = [
+    ...SKILLS.map((s) => s.name),
+    ...TOOLS.map((t) => t.name),
+  ];
+
+  // Build one set of items
+  function buildItems() {
+    return names.map((name) => `
+      <span class="marquee-item">
+        <span class="marquee-dot"></span>
+        ${name}
+      </span>
+    `).join('');
+  }
+
+  // Duplicate content for seamless infinite scroll
+  track.innerHTML = buildItems() + buildItems();
+}
+
+/**
+ * Render the Thoughts / blog section
+ */
+export function renderThoughts() {
+  const grid = document.getElementById('thoughts-grid');
+  if (!grid) return;
+
+  THOUGHTS.forEach((t) => {
+    const card = document.createElement('a');
+    card.className = 'thought-card spotlight-card';
+    card.href = t.link;
+    card.target = '_blank';
+    card.rel = 'noopener';
+    card.setAttribute('aria-label', t.title);
+
+    card.innerHTML = `
+      <div class="thought-card__date">${t.date}</div>
+      <h3 class="thought-card__title">${t.title}</h3>
+      <p class="thought-card__excerpt">${t.excerpt}</p>
+      <div class="thought-card__tags">
+        ${t.tags.map((tag) => `<span class="tag-pill">${tag}</span>`).join('')}
+      </div>
+      <span class="thought-card__read">Read on GitHub ↗</span>`;
+
+    grid.appendChild(card);
   });
 }

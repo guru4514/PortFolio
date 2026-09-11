@@ -44,10 +44,23 @@ export const PROJECTS = [
     title: 'AI Driver Drowsiness Detection',
     flagship: true,
     github: 'https://github.com/guru4514/DrowseGuard-DDDS-',
+    images: [
+      'assets/projects/drowsiness-danger.png',
+      'assets/projects/drowsiness-yawn.png',
+      'assets/projects/drowsiness-eyes-closing.png',
+      'assets/projects/drowsiness-alert.png',
+    ],
     problem: 'Real-time fatigue detection under variable lighting — existing solutions fail at night and in low-contrast environments.',
     approach: 'CNN architecture with TensorFlow + OpenCV pipeline optimized for low-latency, continuous inference across all conditions.',
     impact: '95.6% detection accuracy across lighting conditions. Real-time alert triggered within 200ms of drowsiness detection.',
     tags: ['TensorFlow', 'OpenCV', 'CNN', 'Real-time', 'Python'],
+    architecture: `
+  ┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+  │   Camera     │────▶│   OpenCV     │────▶│  CNN Model   │────▶│  Threshold   │────▶│    Alert     │
+  │   Feed       │     │  Preprocess  │     │  Inference   │     │    Check     │     │   System     │
+  └──────────────┘     └──────────────┘     └──────────────┘     └──────────────┘     └──────────────┘
+     30 FPS               Grayscale           TensorFlow           < 200ms              Audio +
+     Real-time            Face ROI            95.6% acc            Latency              Visual`,
     details: [
       'Developed CNN-based real-time drowsiness detection using TensorFlow and OpenCV',
       'Achieved 95.6% accuracy across varying environmental and lighting conditions',
@@ -64,6 +77,13 @@ export const PROJECTS = [
     approach: 'NLP-powered pipeline with semantic skill matching, automatic extraction from PDF/DOCX/TXT, and explainable scoring system.',
     impact: '99.12% classification accuracy. Batch-processes and ranks multiple candidates against a job description in seconds.',
     tags: ['NLP', 'Python', 'Scikit-learn', 'FastAPI', 'REST API', 'PDF Parsing'],
+    architecture: `
+  ┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+  │   Resume     │────▶│   Parser     │────▶│     NLP      │────▶│   Scoring    │────▶│   Ranked     │
+  │   Upload     │     │   Extract    │     │   Pipeline   │     │   Engine     │     │   Output     │
+  └──────────────┘     └──────────────┘     └──────────────┘     └──────────────┘     └──────────────┘
+     PDF/DOCX/TXT        Skills,              Semantic            99.12%               REST API
+     Batch               Experience           Matching            Accuracy             Dashboard`,
     details: [
       'Built end-to-end resume screening system with semantic skill matching and explainable candidate ranking',
       'Developed REST APIs and recruiter dashboards for resume upload, candidate comparison, and shortlist generation',
@@ -92,6 +112,11 @@ export const PROJECTS = [
     title: 'Pigmie — Finance Record Management System',
     flagship: true,
     github: 'https://github.com/guru4514/Finance-Tracker-KhataFlow',
+    demo: 'https://finance-tracker-9st.pages.dev/',
+    images: [
+      'assets/projects/pigmie-landing.png',
+      'assets/projects/pigmie-dashboard.png',
+    ],
     problem: 'Financial collection agents need a tool that works offline in the field and syncs when online — existing apps require constant connectivity.',
     approach: 'Dual-mode architecture: offline-first (IndexedDB) + live org sync (Firestore). RBAC with approval workflows. Shipped as native Android APK via Capacitor.',
     impact: 'Zero-framework frontend. 5 RBAC roles. Approval workflow for data integrity. Real-time dashboard with collection analytics.',
@@ -109,32 +134,18 @@ export const PROJECTS = [
 
 export const TIMELINE = [
   {
-    date: '2019–\n2021',
-    role: 'Higher Secondary Education',
-    org: 'Christ The King School',
-    desc: '87.68% — Strong academic foundation across core subjects.',
-    badge: null,
-  },
-  {
-    date: '2021–\n2023',
-    role: 'Pre-University (PUC)',
-    org: 'Sri Vidyaniketan PU College',
-    desc: '87.33% — Science stream. Mathematics and physics foundations that inform engineering decisions to this day.',
-    badge: null,
-  },
-  {
-    date: '2024',
-    role: 'Infosys Springboard — 3 Certifications',
-    org: 'Infosys · Python · Java · Web Dev',
-    desc: 'Completed Python, Java, and Web Development certification tracks — practical foundations feeding directly into full-stack and ML project output.',
-    badge: 'Certification',
-  },
-  {
     date: '2023–\n2027',
     role: 'B.E. Computer Science Engineering',
     org: 'Cambridge Institute of Technology, Bengaluru',
-    desc: 'CGPA 7.0 (till 5th sem) · Expected 2027 · Focus: AI/ML, Data Structures, DBMS, Operating Systems, Software Engineering.',
+    desc: 'Expected 2027 · Focus: AI/ML, Data Structures, DBMS, Operating Systems, Software Engineering.',
     badge: null,
+  },
+  {
+    date: '2024–\n2026',
+    role: '6 Professional Certifications',
+    org: 'Oracle · Infosys · ML/DL Tracks',
+    desc: 'Oracle Generative AI Professional · Infosys Springboard (Python, Java, Web Dev) · Machine Learning & Deep Learning certification tracks. Applied learnings directly to project work.',
+    badge: 'Certification',
   },
   {
     date: '2025',
@@ -142,20 +153,6 @@ export const TIMELINE = [
     org: 'CSI Student Chapter',
     desc: 'Led logistics and coordination for multiple CSI chapter events. Managed volunteers, participant engagement, and faculty coordination.',
     badge: 'Leadership',
-  },
-  {
-    date: '2025',
-    role: 'Oracle Generative AI Certified',
-    org: 'Oracle',
-    desc: "Certified in Generative AI foundations and applied LLM usage through Oracle's professional certification track.",
-    badge: 'Certification',
-  },
-  {
-    date: '2026',
-    role: 'Machine Learning & Deep Learning Certified',
-    org: 'Continuing Education',
-    desc: 'Completed structured certification tracks in core ML and deep learning frameworks. Applied learnings directly to project work.',
-    badge: 'Certification',
   },
   {
     date: '2027',
@@ -167,12 +164,36 @@ export const TIMELINE = [
   },
 ];
 
+export const THOUGHTS = [
+  {
+    title: 'How I Built a 95.6% Accurate Drowsiness Detector',
+    excerpt: 'The architecture decisions, dataset challenges, and real-time inference optimizations behind DrowseGuard — from raw camera feed to sub-200ms alerts.',
+    date: '2025',
+    tags: ['CNN', 'OpenCV', 'TensorFlow'],
+    link: 'https://github.com/guru4514/DrowseGuard-DDDS-',
+  },
+  {
+    title: 'Offline-First vs Cloud-First: Lessons from Building Pigmie',
+    excerpt: 'Why I chose a dual-mode architecture with IndexedDB and Firestore, and what I learned about data sync, RBAC, and shipping as a native APK.',
+    date: '2025',
+    tags: ['IndexedDB', 'Firebase', 'Architecture'],
+    link: 'https://github.com/guru4514/Finance-Tracker-KhataFlow',
+  },
+  {
+    title: 'NLP Pipeline Design for Resume Screening at Scale',
+    excerpt: 'How semantic matching outperforms keyword search — building an explainable scoring engine that processes batch candidates in seconds.',
+    date: '2025',
+    tags: ['NLP', 'Scikit-learn', 'FastAPI'],
+    link: 'https://github.com/guru4514/AI-Resume-Screening',
+  },
+];
+
 export const TERM_CMDS = {
   help: `<div class="t-out"><br>Commands:<br>&nbsp;<span style="color:#A3E635">about</span>     — Who is Gururaj<br>&nbsp;<span style="color:#A3E635">projects</span>  — All projects<br>&nbsp;<span style="color:#A3E635">skills</span>    — Tech stack<br>&nbsp;<span style="color:#A3E635">contact</span>   — Get in touch<br>&nbsp;<span style="color:#A3E635">resume</span>    — Download resume<br>&nbsp;<span style="color:#A3E635">goto</span> &lt;sec&gt; — Jump to section<br>&nbsp;<span style="color:#A3E635">theme</span>     — Toggle dark/light<br>&nbsp;<span style="color:#A3E635">clear</span>     — Clear screen<br>&nbsp;<span style="color:#A3E635">exit</span>      — Close terminal<br><br></div>`,
 
-  about: `<div class="t-out"><br><span style="color:#A3E635">GURURAJ B KANDAGAL</span><br>CSE @ Cambridge Institute of Technology (2027)<br>CGPA: 7.0 · Bengaluru, India<br>Focus: AI/ML · Full-Stack · Systems that ship<br><br>Currently: CSI Event Operations Lead<br>Certs: Oracle GenAI · Infosys (Python, Java, Web Dev) · ML/DL<br><br></div>`,
+  about: `<div class="t-out"><br><span style="color:#A3E635">GURURAJ B KANDAGAL</span><br>CSE @ Cambridge Institute of Technology (2027)<br>Bengaluru, India<br>Focus: AI/ML · Full-Stack · Systems that ship<br><br>Currently: CSI Event Operations Lead<br>Certs: Oracle GenAI · Infosys (Python, Java, Web Dev) · ML/DL<br><br></div>`,
 
-  projects: `<div class="t-out"><br><span style="color:#f59e0b">★</span> [01] AI Driver Drowsiness Detection — 95.6% accuracy, CNN + OpenCV<br><span style="color:#71717a">   └→</span> github.com/guru4514/DrowseGuard-DDDS-<br><br>[02] AI Resume Screening & Ranking — NLP, semantic matching, REST API<br><span style="color:#71717a">   └→</span> github.com/guru4514/AI-Resume-Screening<br><br>[03] Smart Agriculture Marketplace — Node.js + MongoDB full-stack<br><span style="color:#71717a">   └→</span> github.com/guru4514/Smart-Agriculture-Marketplace<br><br><span style="color:#f59e0b">★</span> [04] Pigmie Finance App — Firebase + IndexedDB + Android APK<br><span style="color:#71717a">   └→</span> github.com/guru4514/Finance-Tracker-KhataFlow<br><br></div>`,
+  projects: `<div class="t-out"><br>[01] AI Driver Drowsiness Detection — 95.6% accuracy, CNN + OpenCV<br><span style="color:#71717a">   └→</span> github.com/guru4514/DrowseGuard-DDDS-<br><br>[02] AI Resume Screening &amp; Ranking — NLP, semantic matching, REST API<br><span style="color:#71717a">   └→</span> github.com/guru4514/AI-Resume-Screening<br><br>[03] Smart Agriculture Marketplace — Node.js + MongoDB full-stack<br><span style="color:#71717a">   └→</span> github.com/guru4514/Smart-Agriculture-Marketplace<br><br>[04] Pigmie Finance App — Firebase + IndexedDB + Android APK<br><span style="color:#71717a">   └→</span> github.com/guru4514/Finance-Tracker-KhataFlow<br><br></div>`,
 
   skills: `<div class="t-out"><br>Languages : Python, Java, SQL, C<br>AI / ML   : TensorFlow, PyTorch, Scikit-learn, OpenCV, CNN, YOLO, NLP<br>Databases : MySQL, MongoDB, Oracle SQL<br>Tools     : Git, Docker, FastAPI, Node.js, Jupyter, Colab<br>Platforms : Linux, Firebase, Android Studio, VS Code<br><br></div>`,
 
@@ -193,6 +214,7 @@ export const CMD_PALETTE_ITEMS = [
   { icon: '⬡', label: 'Skills',          action: 'goto',     target: 'skills' },
   { icon: '◈', label: 'Projects',        action: 'goto',     target: 'projects' },
   { icon: '◷', label: 'Journey',         action: 'goto',     target: 'journey' },
+  { icon: '✐', label: 'Thoughts',        action: 'goto',     target: 'thoughts' },
   { icon: '✉', label: 'Contact',         action: 'goto',     target: 'contact' },
   { icon: '↓', label: 'Download Resume', action: 'download', target: 'assets/resume.pdf' },
   { icon: '✎', label: 'Copy Email',      action: 'copy',     target: 'gurubk321@gmail.com' },

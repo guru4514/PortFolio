@@ -230,6 +230,80 @@ html {
 }
 
 
+/* ── Tactile Press Feedback — Scale on :active ────────────────── */
+/* Inspired by Emil Kowalski's portfolio — instant "pressed" feel */
+
+.btn-primary:active,
+.c-card:active,
+.cmd-item:active,
+.nav-roman:active,
+#dm-toggle:active {
+  transform: scale(0.97);
+  transition: transform 100ms ease;
+}
+
+/* Tool pills and project cards already have hover transforms,
+   so we compose scale with their existing translateY */
+.tool-pill:active {
+  transform: translateY(-2px) scale(0.97);
+  transition: transform 100ms ease;
+}
+
+.project-card:active {
+  transform: translateY(-2px) scale(0.98);
+  transition: transform 100ms ease;
+}
+
+.element:active {
+  transform: translateY(-3px) scale(0.97);
+  transition: transform 100ms ease;
+}
+
+/* Magnetic buttons: scale composes with dynamic translate set by JS.
+   The JS sets inline transform, so we use a wrapper approach —
+   the scale is applied to the inner content via a CSS trick */
+.magnetic:active {
+  filter: brightness(0.95);
+}
+
+/* Contact submit button */
+.cf-btn:active {
+  transform: scale(0.97);
+  transition: transform 100ms ease;
+}
+
+/* Disable scale feedback on touch devices — they have their own feedback */
+@media (pointer: coarse) {
+  .btn-primary:active,
+  .c-card:active,
+  .cmd-item:active,
+  .nav-roman:active,
+  #dm-toggle:active,
+  .tool-pill:active,
+  .project-card:active,
+  .element:active,
+  .cf-btn:active {
+    transform: none;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary:active,
+  .c-card:active,
+  .cmd-item:active,
+  .nav-roman:active,
+  #dm-toggle:active,
+  .tool-pill:active,
+  .project-card:active,
+  .element:active,
+  .cf-btn:active {
+    transform: none;
+    transition: none;
+  }
+}
+
+
 /* ── Utility: Screen Reader Only ──────────────────────────────── */
 
 .sr-only {

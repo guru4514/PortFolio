@@ -135,9 +135,9 @@ section + .section,
 
 
 /* ── Magnetic Button Effect ───────────────────────────────────── */
+/* Smoothing is handled by JS rAF lerp, not CSS transition */
 
 .magnetic {
-  transition: transform var(--duration-fast) var(--ease-out);
   will-change: transform;
 }
 

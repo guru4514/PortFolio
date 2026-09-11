@@ -79,7 +79,10 @@ export function initCounters() {
   );
 
   document.querySelectorAll('[data-target]').forEach((el) => {
-    counterObserver.observe(el);
+    // Only animate elements with numeric targets (skip command palette items etc.)
+    if (!isNaN(parseFloat(el.dataset.target))) {
+      counterObserver.observe(el);
+    }
   });
 }
 
@@ -121,7 +124,7 @@ export function initStatRings() {
  * Initialize sidebar active section tracking
  */
 export function initSidebarTracking() {
-  const SECTIONS = ['hero', 'about', 'skills', 'projects', 'journey', 'contact'];
+  const SECTIONS = ['hero', 'about', 'skills', 'projects', 'journey', 'thoughts', 'contact'];
 
   function updateSideNav() {
     const mid = window.scrollY + window.innerHeight * 0.45;
@@ -144,3 +147,43 @@ export function initSidebarTracking() {
   // Run once on load
   updateSideNav();
 }
+
+
+/**
+ * Initialize sticky card stacking effect for project cards
+ * Cards get scale dampening as they stack
+ */
+export function initStickyCards() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  
+  const cards = document.querySelectorAll('.project-card');
+  if (!cards.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const card = entry.target;
+        const idx = Array.from(cards).indexOf(card);
+        
+        if (!entry.isIntersecting) {
+          // Card hasn't entered viewport yet — don't mark it as stacked
+          return;
+        }
+
+        if (entry.intersectionRatio < 0.85) {
+          // Card is being covered — scale it down slightly
+          const scale = 0.98 - (0.02 * idx);
+          card.style.setProperty('--stack-scale', Math.max(scale, 0.92));
+          card.classList.add('stacked');
+        } else {
+          card.style.removeProperty('--stack-scale');
+          card.classList.remove('stacked');
+        }
+      });
+    },
+    { threshold: [0.1, 0.5, 0.85, 1.0] }
+  );
+
+  cards.forEach((card) => observer.observe(card));
+}
+

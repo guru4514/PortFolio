@@ -189,6 +189,12 @@
   color: #0a0a0a;
 }
 
+/* Film grain: slightly stronger in light mode with multiply blend */
+[data-theme="light"] body::after {
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+}
+
 
 /* ══════════ TABLET (≤ 1024px) ══════════ */
 

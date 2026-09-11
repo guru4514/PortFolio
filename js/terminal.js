@@ -4,6 +4,7 @@
 
 import { TERM_CMDS, ASCII_BANNER } from './data.js';
 import { toggleTheme } from './theme.js';
+import { playBell } from './audio.js';
 
 let termOverlay, termOutput, termInput;
 
@@ -90,7 +91,7 @@ export function initTerminal() {
 
     if (cmd.startsWith('goto ')) {
       const target = cmd.replace('goto ', '').trim();
-      const validSections = ['hero', 'about', 'skills', 'projects', 'journey', 'contact'];
+      const validSections = ['hero', 'about', 'skills', 'projects', 'journey', 'thoughts', 'contact'];
 
       if (validSections.includes(target)) {
         closeTerm();
@@ -120,6 +121,7 @@ export function initTerminal() {
 function openTerm() {
   if (!termOverlay) return;
   termOverlay.classList.add('open');
+  playBell();
   setTimeout(() => {
     if (termInput) termInput.focus();
   }, 80);
