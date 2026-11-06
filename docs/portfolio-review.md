@@ -1,6 +1,6 @@
 # Portfolio review and redesign
 
-Reviewed 6 November 2026. The implementation is in the local portfolio repository; the current public Vercel deployment remains unchanged.
+Reviewed 6 November 2026. The implementation was subsequently published to the existing Vercel project; see `docs/release.md` for deployment verification.
 
 ## Positioning
 
@@ -68,4 +68,4 @@ These are qualitative design references, not a universal ranking of the â€œbestâ
 
 ## Release status and limits
 
-The source changes and production bundle are complete locally. No Git push or Vercel deployment occurred. Vercel configuration is prepared for the existing deployment; no new Sites hosting project was created. Form logic was tested with mocks and native browser validation, without sending test messages or verifying inbox delivery. No Lighthouse score, production traffic improvement, or complete accessibility certification is claimed.
+The source changes and production bundle were published through the existing Vercel Git integration; no new hosting project was created. Mocked form tests passed, and a later authorized live test reached the owner's inbox. The measured PageSpeed mobile results and remaining performance work are recorded in `docs/release.md`. No production traffic improvement or complete accessibility certification is claimed.

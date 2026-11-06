@@ -18,4 +18,4 @@
 - Production screenshots saved under ignored `artifacts/`: `portfolio-v3-desktop.png`, `portfolio-v3-mobile.png`, `portfolio-v3-full.png`, and `portfolio-v3-case-study.png`.
 - The original public resume PDF and both pre-existing untracked DOCX files are unchanged. DOCX files are absent from the production output.
 
-Limitations: no live message sent, no inbox-delivery verification, no Lighthouse measurement, no exhaustive assistive-technology audit, and no deployment. Preview servers were stopped after verification. Run `npm run preview` to reopen the production bundle locally.
+Production verification is recorded in `docs/release.md`: the site is deployed, the authorized contact test reached the owner's inbox, and a PageSpeed mobile lab report is available. No exhaustive assistive-technology audit or real-user performance measurement was performed. Run `npm run preview` to reopen the production bundle locally.

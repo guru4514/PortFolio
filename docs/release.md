@@ -1,5 +1,22 @@
 # Portfolio release — 6 November 2026
 
+## Production verification
+
+The redesign was published successfully from commit `42bc2aeb4e4fa6d2d268044a54a35f794a83eed0`.
+Public site: https://gururaj-portfolio-roan.vercel.app/
+Immutable deployment: https://gururaj-portfolio-akn7hvglw-guru4514.vercel.app
+
+- Home, all four case-study routes, résumé PDF, robots.txt, and sitemap.xml returned HTTP 200.
+- An unknown URL returned HTTP 404 with the custom error page.
+- A local DOCX draft and this internal release document returned HTTP 404 on the deployed site.
+- Web3Forms accepted one authorized test message; inbox receipt was confirmed by the owner.
+- Seven automated tests passed, including the clean-output regression test.
+- Google PageSpeed Insights mobile lab report: Performance 91, Accessibility 100, Best Practices 100, SEO 100. FCP 1.5 s, LCP 2.9 s, total blocking time 0 ms, CLS 0.113. These are one lab run, not real-user measurements or an accessibility certification.
+- Report: https://pagespeed.web.dev/analysis/https-gururaj-portfolio-roan-vercel-app/wddaqdd4q4?form_factor=mobile
+- Follow-up performance work: investigate mobile header initialization/layout shift and reduce oversized image delivery. No score guarantee is implied.
+
+Screenshots and HTTP-check output are retained locally under ignored `artifacts/`.
+
 ## Configuration
 
 - Repository: `guru4514/PortFolio`
