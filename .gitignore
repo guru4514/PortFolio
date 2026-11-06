@@ -8,3 +8,16 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Generated deployment and local QA files
+dist/
+artifacts/
+node_modules/
+
+# Local drafts and deployment credentials
+assets/Gururaj_Kandagal_Resume.docx
+assets/Gururaj_Kandagal_SWE_Resume.docx
+.vercel/
+.env
+.env.*
+!.env.example

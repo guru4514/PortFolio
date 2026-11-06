@@ -1,97 +1,48 @@
-/* ═══════════════════════════════════════════════════════════════
-   FORM — Web3Forms contact form handler
-   ═══════════════════════════════════════════════════════════════ */
-
-// Replace this with your actual Web3Forms access key
-const WEB3FORMS_KEY = '1c29e1dc-ccc2-4085-a166-9ef828178d75';
-
-/**
- * Initialize contact form with Web3Forms integration
- */
 export function initContactForm() {
-  const form = document.getElementById('contact-form');
+  const form = document.querySelector('#contact-form');
   if (!form) return;
-
-  const btn = form.querySelector('.cf-btn');
-  const statusEl = form.querySelector('.cf-status');
-  const originalBtnText = btn ? btn.textContent : 'Send it →';
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    if (!btn || !statusEl) return;
-
-    // Validate required fields
-    const name = form.querySelector('[name="name"]');
-    const email = form.querySelector('[name="email"]');
-    const message = form.querySelector('[name="message"]');
-
-    if (!name.value.trim() || !email.value.trim() || !message.value.trim()) {
-      showStatus(statusEl, 'error', 'Please fill in all fields.');
+  const button = form.querySelector('button[type="submit"]');
+  const status = form.querySelector('.form-status');
+  const originalLabel = button.innerHTML;
+  let sending = false;
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (sending || !form.reportValidity() || form.elements.botcheck.checked) return;
+    if (!form.elements.name.value.trim() || !form.elements.message.value.trim()) {
+      status.dataset.state = 'error';
+      status.textContent = 'Please enter your name and a message.';
       return;
     }
-
-    // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email.value.trim())) {
-      showStatus(statusEl, 'error', 'Please enter a valid email address.');
-      return;
-    }
-
-    // Disable button during submission
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-
+    sending = true;
+    button.disabled = true;
+    button.textContent = 'Sending…';
+    form.setAttribute('aria-busy', 'true');
+    status.dataset.state = 'pending';
+    status.textContent = 'Sending your message…';
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
     try {
-      const formData = new FormData(form);
-      formData.append('access_key', WEB3FORMS_KEY);
-      formData.append('subject', `Portfolio Contact: ${name.value.trim()}`);
-      formData.append('from_name', 'Portfolio Contact Form');
-
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData,
-      });
-
+      const data = new FormData(form);
+      // The hidden field supplies the key once, including for non-JS submissions.
+      data.set('subject', `Portfolio enquiry from ${form.elements.name.value.trim()}`);
+      data.set('from_name', 'Gururaj’s portfolio');
+      const response = await fetch(form.action, { method: 'POST', body: data, signal: controller.signal });
       const result = await response.json();
-
-      if (result.success) {
-        btn.textContent = 'Sent ✓';
-        btn.classList.add('cf-btn--success');
-        showStatus(statusEl, 'success', 'Message sent successfully! I\'ll get back to you soon.');
-        form.reset();
-
-        // Reset button after delay
-        setTimeout(() => {
-          btn.textContent = originalBtnText;
-          btn.classList.remove('cf-btn--success');
-          btn.disabled = false;
-          hideStatus(statusEl);
-        }, 4000);
-      } else {
-        throw new Error(result.message || 'Submission failed');
-      }
+      if (!response.ok || !result.success) throw new Error('Message was not accepted');
+      status.dataset.state = 'success';
+      status.textContent = 'Thanks — your message was sent. I’ll get back to you by email.';
+      form.reset();
     } catch (error) {
-      btn.textContent = 'Failed ✕';
-      btn.classList.add('cf-btn--error');
-      showStatus(statusEl, 'error', 'Something went wrong. Please email me directly at gurubk321@gmail.com');
-
-      // Reset button after delay
-      setTimeout(() => {
-        btn.textContent = originalBtnText;
-        btn.classList.remove('cf-btn--error');
-        btn.disabled = false;
-      }, 3000);
+      status.dataset.state = 'error';
+      status.textContent = error.name === 'AbortError'
+        ? 'Delivery could not be confirmed. Your message is still here; email gurubk321@gmail.com directly if needed.'
+        : 'Message could not be sent. Your message is still here; try again or email gurubk321@gmail.com.';
+    } finally {
+      clearTimeout(timeout);
+      sending = false;
+      button.disabled = false;
+      button.innerHTML = originalLabel;
+      form.removeAttribute('aria-busy');
     }
   });
-}
-
-function showStatus(el, type, message) {
-  el.textContent = message;
-  el.className = `cf-status cf-status--${type}`;
-}
-
-function hideStatus(el) {
-  el.className = 'cf-status';
-  el.textContent = '';
 }
