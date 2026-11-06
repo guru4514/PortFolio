@@ -38,7 +38,7 @@ Project descriptions are deliberately static so they remain accessible without J
 
 This repository retains the existing Vercel destination. `vercel.json` specifies `npm test && npm run build` and the `dist` output directory, following [Vercel's file-based configuration](https://vercel.com/docs/project-configuration). Node is pinned to 24.x. The build recreates the generated output directory and verifies its contents against the public-file allowlist. Deploy the updated source through the existing Vercel project/Git workflow. No new hosting account or Sites project is required.
 
-This work has not been pushed or deployed. No Vercel CLI or linked `.vercel` project was present in the workspace. The local production build is ready for that workflow.
+Push a release branch to create a Vercel preview through the connected Git integration. Merge the verified branch into the configured production branch to publish. A local Vercel CLI login is not required for this workflow. Record the previous production deployment before each release.
 
 The canonical, Open Graph, structured-data, and sitemap URLs point to `https://gururaj-portfolio-roan.vercel.app/`. Update all of them together if a custom domain is configured later.
 
