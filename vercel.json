@@ -2,6 +2,20 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm test && npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.gurubk.me" }],
+      "destination": "https://gurubk.me/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "gururaj-portfolio-roan.vercel.app" }],
+      "destination": "https://gurubk.me/:path*",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

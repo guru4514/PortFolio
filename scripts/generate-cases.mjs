@@ -1,7 +1,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { cases } from '../data/case-studies.mjs';
 
-const origin = 'https://gururaj-portfolio-roan.vercel.app';
+const origin = 'https://gurubk.me';
 const escape = text => String(text).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 const themeControl = `<button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false" hidden><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></button>`;
 export const viewer = `<dialog id="image-viewer" class="image-viewer" aria-label="Project screenshot viewer"><div class="viewer-toolbar"><span class="mono">PROJECT GALLERY</span><button type="button" class="viewer-close" aria-label="Close screenshot viewer">Close <span aria-hidden="true">×</span></button></div><div class="viewer-stage"></div><div class="viewer-footer"><button type="button" class="viewer-prev" aria-label="Previous screenshot">←</button><p class="viewer-caption" aria-live="polite"></p><button type="button" class="viewer-next" aria-label="Next screenshot">→</button></div></dialog>`;

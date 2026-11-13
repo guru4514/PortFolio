@@ -40,6 +40,6 @@ This repository retains the existing Vercel destination. `vercel.json` specifies
 
 Push a release branch to create a Vercel preview through the connected Git integration. Merge the verified branch into the configured production branch to publish. A local Vercel CLI login is not required for this workflow. Record the previous production deployment before each release.
 
-The canonical, Open Graph, structured-data, and sitemap URLs point to `https://gururaj-portfolio-roan.vercel.app/`. Update all of them together if a custom domain is configured later.
+The canonical, Open Graph, structured-data, and sitemap URLs point to `https://gurubk.me/`.
 
 Google Fonts is the only external presentation dependency; system/Georgia fallbacks remain available. The contact form uses the existing public Web3Forms access key. Unit tests cover the client behavior, but provider acceptance and inbox delivery have not been verified by sending a message.
