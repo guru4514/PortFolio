@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 export const publicFiles = [
   'index.html', '404.html', 'robots.txt', 'sitemap.xml', 'css/style.css', 'css/experience.css',
   'js/app.js', 'js/theme.js', 'js/form.js', 'js/experience.js', 'assets/favicon.svg',
-  'assets/profile.webp', 'assets/profile.jpg', 'assets/resume.pdf', 'assets/social-card.png',
+  'assets/resume.pdf', 'assets/social-card.png',
   'assets/projects/pigmie-current.webp', 'assets/projects/talentrank.webp',
   'assets/projects/drowsiness-alert.webp', 'assets/projects/drowsiness-yawn.webp',
   'assets/projects/agroconnect.webp',
