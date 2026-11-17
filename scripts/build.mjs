@@ -5,12 +5,15 @@ import assert from 'node:assert/strict';
 // Deliberate allowlist: local resumes, research notes, and repository files stay out.
 export const publicFiles = [
   'index.html', '404.html', 'robots.txt', 'sitemap.xml', 'css/style.css', 'css/experience.css',
-  'js/app.js', 'js/theme.js', 'js/form.js', 'js/experience.js', 'assets/favicon.svg',
+  'js/app.js', 'js/theme.js', 'js/form.js', 'js/experience.js', 'js/images.js', 'assets/favicon.svg',
   'assets/resume.pdf', 'assets/social-card.png',
   'assets/projects/pigmie-current.webp', 'assets/projects/talentrank.webp',
   'assets/projects/drowsiness-alert.webp', 'assets/projects/drowsiness-yawn.webp',
   'assets/projects/agroconnect.webp',
   'assets/projects/pigmie-dashboard.webp', 'assets/projects/drowsiness-eyes-closing.webp',
+  'assets/projects/pigmie-current-480.webp',
+  'assets/projects/talentrank-480.webp', 'assets/projects/talentrank-960.webp',
+  'assets/projects/agroconnect-480.webp', 'assets/projects/agroconnect-960.webp',
   'work/pigmie.html', 'work/talentrank.html', 'work/drowseguard.html', 'work/agroconnect.html',
 ];
 const root = resolve('.');

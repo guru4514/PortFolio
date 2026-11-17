@@ -17,6 +17,13 @@ for (const page of pages) {
   assert.equal(ids.length, new Set(ids).size, `${page}: duplicate ids`);
   assert.equal((html.match(/<h1\b/g) || []).length, 1, `${page}: use one primary heading`);
   const localFiles = new Set();
+  for (const [, srcset] of html.matchAll(/\bsrcset="([^"]+)"/g)) {
+    for (const candidate of srcset.split(',')) {
+      const [url, width] = candidate.trim().split(/\s+/);
+      assert(/^\d+w$/.test(width), `${page}: invalid responsive image descriptor`);
+      localFiles.add(resolve(dirname(page), url));
+    }
+  }
   for (const [, raw] of html.matchAll(/\b(?:src|href)="([^"]+)"/g)) {
     if (/^(?:https?:|mailto:|tel:)/.test(raw)) continue;
     const [filePart, fragment] = raw.split('#');

@@ -7,7 +7,10 @@
 - Seven existing tests passed; production build checked six pages and 58 local references and emitted 24 public files. Browser JavaScript syntax and Git whitespace checks passed.
 - Browser checked desktop, 390px and 320px layouts; all four case studies had no horizontal document overflow at 320px. Verified mobile menu/Escape, spotlight switching, gallery Escape/focus return and theme persistence. No browser warnings/errors were observed in the checked flows.
 - Current SDE resume checksum remains unchanged. Personal-contribution and evaluation-claim revisions were excluded at the owner's request.
-- Public descriptions and topics were updated and read back for the five featured/project portfolio repositories. GitHub profile editing was rejected by the current API credentials (HTTP 404); profile bio/link, pins and Search Console verification remain account tasks. Recordings and responsive image variants have not been added.
+- Public descriptions and topics were updated and read back for the five featured/project portfolio repositories. After the owner signed in, the GitHub bio and portfolio link were saved and five relevant public repositories were pinned; GitHub confirmed the updates.
+- Added five responsive WebP variants (480px and, where useful, 960px) with `srcset`/`sizes` on homepage cards, spotlight and generated case galleries. The 480px files are 56–90% smaller than their originals; full-resolution viewer links remain available. Browser checks confirmed the mobile hero and AgroConnect gallery load 480px variants, spotlight switching clears stale candidates, and the viewer opens originals. No document overflow at 390px or warnings/errors in the checked homepage flow.
+- Follow-up build checked six pages and 68 local references and emitted 30 public files; all seven tests, JavaScript syntax and whitespace checks passed.
+- Added the Google Search Console HTML verification tag supplied by the owner's signed-in account. Verification and sitemap submission follow production deployment. Project recordings have not been added.
 
 ## Original verification
 

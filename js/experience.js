@@ -1,3 +1,5 @@
+import { imageSources } from './images.js';
+
 const spotlights = {
   pigmie: { title: 'Pigmie', category: 'OFFLINE STORAGE / SHARED WORKFLOWS', image: 'pigmie-current.webp', width: 877, height: 906, description: 'A finance ledger with local records, team permissions, and an Android target.' },
   talentrank: { title: 'TalentRank Studio', category: 'APPLIED NLP / EXPLAINABLE SCORING', image: 'talentrank.webp', width: 1376, height: 1079, description: 'Resume analysis that brings skill matches, gaps, and scoring evidence into view.' },
@@ -31,6 +33,8 @@ function initSpotlight() {
     panel.setAttribute('aria-labelledby', button.id);
     const image = document.getElementById('spotlight-image');
     image.src = `assets/projects/${project.image}`;
+    image.srcset = imageSources(project.image, project.width);
+    image.sizes = '(max-width:680px) calc(100vw - 70px), (max-width:1100px) 42vw, 470px';
     image.alt = `${project.title} project interface`;
     image.width = project.width;
     image.height = project.height;
