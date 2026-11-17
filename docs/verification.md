@@ -1,5 +1,16 @@
 # Verification — 6 November 2026
 
+## Update — 17 November 2026
+
+- Simplified the homepage by removing repeated project navigation, filters, expandable notes, and the repeated engineering-topics section; case-study content remains available.
+- Increased small labels, reserved spotlight-control space, and initialized the enhanced header before paint with a five-second fallback if the main module fails to load. No new Core Web Vitals score is claimed.
+- Seven existing tests passed; production build checked six pages and 58 local references and emitted 24 public files. Browser JavaScript syntax and Git whitespace checks passed.
+- Browser checked desktop, 390px and 320px layouts; all four case studies had no horizontal document overflow at 320px. Verified mobile menu/Escape, spotlight switching, gallery Escape/focus return and theme persistence. No browser warnings/errors were observed in the checked flows.
+- Current SDE resume checksum remains unchanged. Personal-contribution and evaluation-claim revisions were excluded at the owner's request.
+- Public descriptions and topics were updated and read back for the five featured/project portfolio repositories. GitHub profile editing was rejected by the current API credentials (HTTP 404); profile bio/link, pins and Search Console verification remain account tasks. Recordings and responsive image variants have not been added.
+
+## Original verification
+
 - `npm run build`: passed. Five content pages plus a branded 404 page, 26 public files, including the PDF resume and social image.
 - `npm test`: 7 tests passed, 0 failed. Contact requests were mocked; these tests send no messages. The additional build regression test verifies stale-output removal and exclusion of local drafts.
 - JavaScript syntax checks for the browser scripts: passed.
@@ -17,5 +28,7 @@
 - Version 3 layouts inspected at 320, 390, 768, and 1440 pixels, including light and dark themes. No horizontal document overflow or browser warning/error logs observed in these checks.
 - Production screenshots saved under ignored `artifacts/`: `portfolio-v3-desktop.png`, `portfolio-v3-mobile.png`, `portfolio-v3-full.png`, and `portfolio-v3-case-study.png`.
 - The original public resume PDF and both pre-existing untracked DOCX files are unchanged. DOCX files are absent from the production output.
+
+The screenshot and DOCX paths above describe the original verification. These files were archived outside the repository during the 17 November 2026 cleanup; the current public SDE resume remains in `assets/resume.pdf`.
 
 Production verification is recorded in `docs/release.md`: the site is deployed, the authorized contact test reached the owner's inbox, and a PageSpeed mobile lab report is available. No exhaustive assistive-technology audit or real-user performance measurement was performed. Run `npm run preview` to reopen the production bundle locally.

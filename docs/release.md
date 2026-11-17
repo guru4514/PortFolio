@@ -15,7 +15,7 @@ Immutable deployment: https://gururaj-portfolio-akn7hvglw-guru4514.vercel.app
 - Report: https://pagespeed.web.dev/analysis/https-gururaj-portfolio-roan-vercel-app/wddaqdd4q4?form_factor=mobile
 - Follow-up performance work: investigate mobile header initialization/layout shift and reduce oversized image delivery. No score guarantee is implied.
 
-Screenshots and HTTP-check output are retained locally under ignored `artifacts/`.
+Historical screenshots and HTTP-check output were archived outside the repository during the 17 November 2026 cleanup.
 
 ## Configuration
 
@@ -45,6 +45,4 @@ If the release fails, use Vercel's rollback to this previous production deployme
 
 ## Domain
 
-Keep the existing canonical URL until a new domain is registered, connected, and working over HTTPS. The requested path is a student .me domain, free for the first year subject to eligibility and availability. Renewal is paid. Registration and connection must finish before changing metadata or redirecting the existing address.
-
-Namecheap's education search reported `gururaj.me` as taken on 6 November 2026. No domain has been registered by this release process.
+On 17 November 2026, the owner chose to retain `https://gururaj-portfolio-roan.vercel.app/` and cancelled the custom-domain setup. The local domain-cutover worktree was removed; its branch remains available in Git history. Production metadata and Vercel configuration retain the existing address.

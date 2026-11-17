@@ -3,6 +3,7 @@ import { initExperiences } from './experience.js';
 
 const root = document.documentElement;
 root.classList.add('js-ready');
+clearTimeout(window.portfolioEnhancementFallback);
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
 menuButton.hidden = false;
@@ -54,33 +55,6 @@ themeButton.addEventListener('click', () => {
   try { localStorage.setItem('gk-theme', root.dataset.theme); } catch { /* In-memory preference still works. */ }
   updateThemeButton();
 });
-
-const filters = document.querySelector('.project-filters');
-const projects = [...document.querySelectorAll('.project')];
-if (filters) filters.hidden = false;
-function filterProjects(filter) {
-  for (const button of filters?.querySelectorAll('button') || []) button.setAttribute('aria-pressed', String(button.dataset.filter === filter));
-  let visible = 0;
-  for (const project of projects) {
-    project.hidden = filter !== 'all' && project.dataset.category !== filter;
-    if (!project.hidden) visible++;
-  }
-  const status = document.querySelector('#filter-status');
-  if (status) status.textContent = `${visible} projects shown.`;
-}
-filters?.addEventListener('click', (event) => {
-  const button = event.target.closest('[data-filter]');
-  if (button) filterProjects(button.dataset.filter);
-});
-function revealLinkedProject() {
-  const project = projects.find((item) => `#${item.id}` === location.hash);
-  if (project?.hidden) {
-    filterProjects('all');
-    project.scrollIntoView();
-  }
-}
-window.addEventListener('hashchange', revealLinkedProject);
-revealLinkedProject();
 
 if ('IntersectionObserver' in window) {
   const navLinks = [...navigation.querySelectorAll('a')];

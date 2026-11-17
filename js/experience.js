@@ -189,6 +189,6 @@ function initEntranceMotion() {
       animation.finished.then(() => animations.delete(animation)).catch(() => animations.delete(animation));
     }
   }, { threshold: .08 });
-  document.querySelectorAll('.project,.practice-list>a,.decision,.case-hero h1').forEach(element => observer.observe(element));
+  document.querySelectorAll('.project,.decision,.case-hero h1').forEach(element => observer.observe(element));
   motion.addEventListener('change', () => { if (motion.matches) { observer.disconnect(); animations.forEach(animation => animation.cancel()); animations.clear(); } });
 }
