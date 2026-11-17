@@ -10,7 +10,8 @@
 - Public descriptions and topics were updated and read back for the five featured/project portfolio repositories. After the owner signed in, the GitHub bio and portfolio link were saved and five relevant public repositories were pinned; GitHub confirmed the updates.
 - Added five responsive WebP variants (480px and, where useful, 960px) with `srcset`/`sizes` on homepage cards, spotlight and generated case galleries. The 480px files are 56–90% smaller than their originals; full-resolution viewer links remain available. Browser checks confirmed the mobile hero and AgroConnect gallery load 480px variants, spotlight switching clears stale candidates, and the viewer opens originals. No document overflow at 390px or warnings/errors in the checked homepage flow.
 - Follow-up build checked six pages and 68 local references and emitted 30 public files; all seven tests, JavaScript syntax and whitespace checks passed.
-- Added the Google Search Console HTML verification tag supplied by the owner's signed-in account. Verification and sitemap submission follow production deployment. Project recordings have not been added.
+- Production commit `8dc6958d718391908a49d75516ae772a8ea4275a` deployed successfully on Vercel. The homepage verification tag, responsive markup and all five new image assets are live.
+- Google Search Console confirmed ownership using the HTML tag. Submitted `sitemap.xml`; Google reported **Success**, last read 17 November 2026, with **5 discovered pages**. Discovery does not establish indexing or rankings; reports are still processing. Keep the verification tag in the homepage. Project recordings have not been added.
 
 ## Original verification
 
